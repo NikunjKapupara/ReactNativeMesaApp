@@ -6,32 +6,15 @@ const UI_FIELDS_MARGIN = 16
 const UI_INPUT_FIELDS_MARGIN = 8
 const UI_ACTION_BUTTON_MARGIN = 24
 
-export default function LoginScreen({navigation}) {
-  
-  const [accessCode, setAccessCode] = useState('')
-
-  function onLoginButtonClicked() {
-      console.log('Access Code is: '+accessCode)
-      navigation.navigate('Landingscreen')
-  }
-
-  return (    
-    
-    <View style={[styles.container]}>
-      <View style={styles.registerUiContainer}>
-      <Text style={styles.fieldNames}>Access Code:</Text>
-          <TextInput style={styles.inputTextFields} 
-            returnKeyType='next' 
-            placeholder='Enter Access Code' 
-            keyboardType='default'
-            onChangeText={(text) => setAccessCode(text)}
-            placeholderTextColor="gray"/>
-
-          <TouchableOpacity style = {styles.actionButton} onPress={onLoginButtonClicked}>
-              <Text style={{color:'white'}}>LOGIN</Text>
-          </TouchableOpacity>
-
-      </View>
+export default function AadharCardScanner({navigation}) {
+    return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Aadhar Card Scaner Screen</Text>
+          <TouchableOpacity style = {styles.actionButton} onPress={()=> {
+                navigation.navigate('RegisterPatientScreen')
+          }}>
+        <Text style={{color:'white'}}>Go BACK</Text>
+      </TouchableOpacity>
     </View>
   )
 }

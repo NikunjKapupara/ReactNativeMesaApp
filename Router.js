@@ -4,6 +4,7 @@ import LoginScreen from './Screens/LoginScreen';
 import LandingScreen from './Screens/LandingScreen';
 import RegisterInstituteScreen from  './Screens/RegisterInstituteScreen'
 import RegisterPatientScreen from './Screens/RegisterPatientScreen'
+import AadharCardScannerScreen from './Screens/AadharCardScanner'
 
 const Stack = createStackNavigator();
 
@@ -17,10 +18,12 @@ class Router extends React.Component {
       <Stack.Navigator screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
       }}>
-        <Stack.Screen name="RegisterScreen" component={RegisterInstituteScreen} />
-        <Stack.Screen name="Loginscreen" component={LoginScreen} />
-        <Stack.Screen name="Landingscreen" component={LandingScreen} />
-        <Stack.Screen name="RegisterPatientScreen" component={RegisterPatientScreen} />
+      <Stack.Screen name="RegisterScreen" component={RegisterInstituteScreen} />
+      <Stack.Screen name="Loginscreen" component={LoginScreen} />
+      <Stack.Screen name="Landingscreen" component={LandingScreen} />
+      <Stack.Screen name="RegisterPatientScreen" component={RegisterPatientScreen} />
+      <Stack.Screen name="AadharCardScannerScreen" component={AadharCardScannerScreen} />
+        
       </Stack.Navigator>
     );
   }

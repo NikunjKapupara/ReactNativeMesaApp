@@ -1,61 +1,49 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 const UI_FIELDS_MARGIN = 16
 const UI_INPUT_FIELDS_MARGIN = 8
 const UI_ACTION_BUTTON_MARGIN = 24
 
-export default class RegisterInstitute extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-          instName: '',
-          batchNo: ''
-        };
-    }
-    componentDidMount() {
-        console.log('Component did mount called')
-    }
-    render() {
-       const { navigate } = this.props.navigation;
-        return (
-            <View style={[styles.container]}>
-                <View style={styles.registerUiContainer}>
-                    
-                    {/* INSTITUTE NAME */}
-                    <Text style={styles.fieldNames}>Institute Name:</Text>
-                    <TextInput style={styles.inputTextFields} 
-                        returnKeyType='next' 
-                        placeholder='Enter Institute Name' 
-                        keyboardType='default' 
-                        // onSubmitEditing={(text)=>{
-                        //     Alert.alert('Institute Name: '+text)
-                        // }}
-                        onChangeText={(text) => this.setState({instName:text})}
-                        placeholderTextColor="gray"/>
+export default function RegisterInstitute ({navigation}) {
 
-                    {/* BATCH / SERIAL NUMBER */}
-                    <Text style={styles.fieldNames}>Batch/Serial No:</Text>
-                    <TextInput style={styles.inputTextFields} 
-                        returnKeyType='done' 
-                        placeholder='Enter Batch/Serial Number' 
-                        keyboardType='default' 
-                        onChangeText={(text) => this.setState({batchNo:text})}
-                        placeholderTextColor="gray"/>
+    const [instName, setInstName] = useState('')
+    const [batchNo, setBatchNo] = useState('')
 
-                    <TouchableOpacity style = {styles.actionButton} onPress={()=> {
-                            //Alert.alert('Institute Name: '+this.state.instName +'\nBatch No: '+this.state.batchNo)
-                            /// TODO: Put validaton against UI fields.
-                            navigate('Loginscreen')
-                        }}>
-                        <Text style={{color:'white'}}>REGISTER</Text>
-                    </TouchableOpacity>
+    return (
+        <View style={[styles.container]}>
+            <View style={styles.registerUiContainer}>
+                
+                {/* INSTITUTE NAME */}
+                <Text style={styles.fieldNames}>Institute Name:</Text>
+                <TextInput style={styles.inputTextFields} 
+                    returnKeyType='next' 
+                    placeholder='Enter Institute Name' 
+                    keyboardType='default' 
+                    onChangeText={(text) => setInstName(text)}
+                    placeholderTextColor="gray"/>
 
-                </View>
+                {/* BATCH / SERIAL NUMBER */}
+                <Text style={styles.fieldNames}>Batch/Serial No:</Text>
+                <TextInput style={styles.inputTextFields} 
+                    returnKeyType='done' 
+                    placeholder='Enter Batch/Serial Number' 
+                    keyboardType='default'
+                    onChangeText={(text) => setBatchNo(text)}
+                    placeholderTextColor="gray"/>
+
+                <TouchableOpacity style = {styles.actionButton} onPress={()=> {
+                        /// TODO: Put validaton against UI fields.
+                        navigation.navigate('Loginscreen')
+                        console.log('Institute Name: '+instName +' Batch No: '+batchNo)
+                    }}>
+                    <Text style={{color:'white'}}>REGISTER</Text>
+                </TouchableOpacity>
+
             </View>
+        </View>
     )
-  }
 }
 
 const styles = StyleSheet.create({
